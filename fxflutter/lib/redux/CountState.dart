@@ -17,12 +17,12 @@ class CountState{
  * 定义操作该State的全部Action
  * 这里只有增加count一个动作
  */
-enum Action{
+enum Actiossssn{
   increment
 }
 
 CountState reducer(CountState state,action){
-  if(action == Action.increment){
+  if(action == Actiossssn.increment){
     return CountState(state._count+1);
   }
   return state;

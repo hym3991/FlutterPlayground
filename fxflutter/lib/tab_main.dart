@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'User.dart';
+import 'route/new_route.dart';
 void main() => runApp(FxAppRoot());
 
 class FxAppRoot extends StatelessWidget {
@@ -73,18 +74,23 @@ class MyDrawer extends StatelessWidget{
             ),
           ),
           ListTile(
+            onTap: _goNext(context),
             title: Text("item 1"),
           ),
           ListTile(
+            onTap: _goNext(context),
             title: Text("item 2"),
           ),
           ListTile(
+            onTap: _goNext(context),
             title: Text("item 3"),
           ),
           ListTile(
+            onTap: _goNext(context),
             title: Text("item 4"),
           ),
           ListTile(
+            onTap: _goNext(context),
             title: Text("item 5"),
           ),
           ListTile(
@@ -96,6 +102,12 @@ class MyDrawer extends StatelessWidget{
         ],
       ),
     );
+  }
+
+  _goNext(BuildContext context) {
+    Navigator.push(context, new MaterialPageRoute(builder: (context){
+      return new NewRoute();
+    }));
   }
 }
 

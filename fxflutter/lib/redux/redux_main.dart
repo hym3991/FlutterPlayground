@@ -1,88 +1,82 @@
 import 'package:flutter/material.dart';
-import 'CountState.dart';
-void main() => runApp(MyApp());
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 
+import 'CountState.dart';
+void main(){
+  final store = new Store<CountState>(reducer,initialState: CountState.initState());
+  runApp( MyApp(store) );
+  }
 
 class MyApp extends StatelessWidget {
+  final Store<CountState> store;
+  MyApp(this.store);
+
   @override
   Widget build(BuildContext context) {
-
-    return ScopedModel<CountModel>(
-      model: countModel,
-      child: MaterialApp(
-        home: MyHomePage(title: "Scoped Demo"),
-      ),
-    );
+    return
+      StoreProvider<CountState>(
+        store: store,
+        child:  MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: MyHomePage(title: 'Flutter Demo Home Page'),
+        ),
+      );
     }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
+
   final String title;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-    }
 
   @override
   Widget build(BuildContext context) {
-
-    return ScopedModelDescendant<CountModel>(
-      builder: (context,child,model){
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(model.count.toString(),style: TextStyle(
-                    fontSize: 48
-                ),
-                )
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'You have pushed the button this many times:',
             ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: ()=>model.increment(),
-            tooltip: "Increment",
-            child: Icon(Icons.add),
-          ),
-        );
-      },
+            StoreConnector<CountState,int>(
+              converter: (store)=> store.state.count,
+              builder: (context,count){
+                return Text(
+                  count.toString(),
+                  style: TextStyle(
+                    fontSize: 30
+                  ),
+                );
+              },
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: StoreConnector<CountState,VoidCallback>(
+          builder: (context,callback){
+            return FloatingActionButton(
+              onPressed: callback,
+              child: Icon(Icons.add),
+            );
+          },
+          converter: (store){
+           return () => store.dispatch(Actiossssn.increment);
+          }
+      )
     );
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text(widget.title),
-//      ),
-//      body: Center(
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: <Widget>[
-//            Text(
-//              'You have pushed the button this many times:',
-//            ),
-//            Text(
-//              '$_counter',
-//              style: Theme.of(context).textTheme.display1,
-//            ),
-//          ],
-//        ),
-//      ),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: _incrementCounter,
-//        tooltip: 'Increment',
-//        child: Icon(Icons.add),
-//      ),
-//    );
     }
 }

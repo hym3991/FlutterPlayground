@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'route/new_route.dart';
 void main() => runApp(FxAppRoot());
 
 class FxAppRoot extends StatelessWidget {
@@ -10,6 +10,9 @@ class FxAppRoot extends StatelessWidget {
         backgroundColor: Colors.blue
       ),
       home: FxAppRootHome(),
+      routes: {
+        "new_page":(context)=>NewRoute(),
+      },
     );
   }
 }
@@ -23,6 +26,7 @@ class FxAppRootHome extends StatelessWidget{
         title: Text("FxFlutter 学习计划"),
       ),
       body: FxAppRootBody(),
+
     );
   }
 }
@@ -31,7 +35,7 @@ class FxAppRootBody extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Demo2Refresh(),
+      child: Demo2(),
     );
   }
 }
@@ -41,9 +45,15 @@ class Demo1 extends StatelessWidget{
   Widget build(BuildContext context) {
     
     return Center(
-      child: Text("demo1"),
+      child: FlatButton(onPressed: _goNext(context), child: Text("click")),
     );
   }
+
+  _goNext(BuildContext context) {
+    Navigator.push(context, new MaterialPageRoute(builder: (context){
+      return new NewRoute();
+    }));
+    }
 }
 
 class Demo2Refresh extends StatelessWidget {
