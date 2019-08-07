@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'User.dart';
+import 'package:fxflutter/study/User.dart';
 import 'route/new_route.dart';
 void main() => runApp(FxAppRoot());
 

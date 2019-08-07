@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'tab_main2.dart';
-import 'Scroll.dart';
+import 'package:fxflutter/study/tab_main2.dart';
+import 'package:fxflutter/study/Scroll.dart';
 import 'eventbus/EventBus.dart';
 void main()=>runApp(NewRoot());
 

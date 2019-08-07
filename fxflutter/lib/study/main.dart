@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'route/new_route.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flustars/flustars.dart';
 void main() => runApp(FxAppRoot());
 
 class FxAppRoot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+
+    double adapterSize = ScreenUtil.getInstance().getAdapterSize(100);
+
+
     return MaterialApp(
       theme: ThemeData(
         backgroundColor: Colors.blue
@@ -104,7 +111,7 @@ class Item1 extends StatelessWidget {
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    margin: EdgeInsets.only(top: 6,bottom: 2),
+                    margin: EdgeInsets.only(top: ScreenUtil.getInstance().setWidth(375),bottom: 2),
                     alignment: Alignment.topLeft,
                   ),
                   Padding(padding: EdgeInsets.all(10),),

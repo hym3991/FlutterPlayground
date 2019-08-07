@@ -30,7 +30,8 @@ dependencies:
   build_runner: ^1.0.0
   json_serializable: ^2.0.0
   scoped_model: ^1.0.1
-
+  flutter_screenutil: ^0.5.3
+  flustars: ^0.2.6+1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -39,7 +40,7 @@ dev_dependencies:
 fonts:
   family: wxcIconFont
   fonts:
-    - asset: static/font/iconfont.ttf
+    - asset: study.static/font/iconfont.ttf
 
 
 # For information on the generic Dart part of this file, see the

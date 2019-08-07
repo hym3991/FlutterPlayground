@@ -9,7 +9,7 @@ class NewRoute extends StatelessWidget{
         title: Text("New Route"),
       ),
       body: Center(
-        child: Text("This is new route"),
+        child: Text("This is new study.route"),
       ),
     );
   }
